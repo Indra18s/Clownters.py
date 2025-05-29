@@ -30,7 +30,7 @@ def main():
     clear()
     links()
     clear()
-    func = {1:banco, 2:bin, 3:cep, 4:cnpj, 5:covid19, 6:ddd, 7:ddi, 8:ip, 9:geradorCnpj, 10:geradorCpf, 11:geradorPessoas, 12:validadorCnpj, 13:validadorCpf, 14:validadorRg}
+    func = {1:bank, 2:bin, 3:cep, 4:cnpj, 5:covid19, 6:ddd, 7:ddi, 8:ip, 9:CnpjGenerator, 10:CpfGenerator, 11:generatorPeople, 12:CnpjValidator, 13:CpfValidator, 14:IDValidator}
     while True:
         bannerMenu()
         option = input('\n\033[1;34m ===> \033[1;36m').strip()
@@ -39,7 +39,7 @@ def main():
         if readInput(option, 'numeric') != True: continue
         if int(option) == 99 or int(option) == 0: return 0
         if int(option) > 13:
-            print(' option invalida!')
+            print(' invalid option!')
             time.sleep(1)
             continue
         str(func[int(option)]())
@@ -47,7 +47,7 @@ def main():
 
 def sair():
     banner()
-    print('\033[1;34m Obrigado por usar o painel Clownters\n Telegram: @Clownters\n YouTube: @Clownters1')
+    print('\033[1;34m Thank you for using the Clownters panel\n Discord: @indra132jd\n Github: @indra18s')
     sleep(9)
     exit()
 
@@ -84,9 +84,9 @@ def banner():
 def bannerMenu():
     banner()
     #banner_menu = ['Buscas', 'Geradores', 'Moedas', 'Validadores', 'Calculos', 'cep']
-    banner_menu = ['Consulta de Banco', 'Consulta de Bin', 'Consulta de CEP', 'Consulta de CNPJ', 'Consulta de Covid19', 'Consulta de IP', 'Consulta de DDD', 'Consulta de DDI']
-    geradores = ['Gerador de CPF', 'Gerador de CNPJ', 'Gerador de Pessoas']
-    validadores = ['Validador de CNPJ', 'Validador de CPF', 'Validador de RG']
+    banner_menu = ['Bank Inquiry', 'Bin Query', 'CEP consultation', 'CNPJ consultation', 'Covid19 consultation', 'IP Query', 'DDD query', 'DDI consultation']
+    geradores = ['CPF Generator', 'CNPJ Generator', 'People Generator']
+    validadores = ['CNPJ Validator', 'CPF Validator', 'ID Validator']
     banner_menu = banner_menu + geradores + validadores
     a = 0
     for i in sorted(banner_menu):
@@ -101,27 +101,27 @@ def readInput(x, typ):
     match  typ:
         case 'numeric':
             if x.isnumeric(): return True
-            else: print('\033[1;33m Digite apenas números!')
+            else: print('\033[1;33m Enter numbers only!')
             time.sleep(2)
         case 'isalpha':
             if x.isalpha(): return True
-            else: print('\033[1;33m Digite apenas letras!')
+            else: print('\033[1;33m Just type letters!')
             time.sleep(2)
         case 'isalnum':
             if x.isalnum(): return True
-            else: print('\033[1;33m Digite apenas números e letras!')
+            else: print('\033[1;33m Enter only numbers and letters!')
             time.sleep(2)
         case 'empty':
             if len(x) == 0 or x.isspace():
-                print('\033[1;33m Digite alguma coisa!')
+                print('\033[1;33m Type something!')
                 time.sleep(2)
                 return True
         case other: return False
 
 
 def retorneMenu():
-    lst = ['Continue', 'Retorne para o menu', 'Sair do menu']
-    print('\n\033[1;32m', '=' * 39, '\n\n\033[1;34m Continue ou retornar ao menu principal?\n')
+    lst = ['Continue', 'Return to menu', 'Exit the menu']
+    print('\n\033[1;32m', '=' * 39, '\n\n\033[1;34m Continue or return to main menu?\n')
     a = 0
     for i in lst:
         a += 1
@@ -144,12 +144,12 @@ def myReplace(x):
         
 
 # Funções de busca
-def banco():
+def bank():
     while True:
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o codigo para a consulta\n ===> \033[1;36m').strip()
+            input_user = input('\033[1;34m Enter the code for the query\n ===> \033[1;36m').strip()
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             if readInput(input_user, 'numeric') != True: continue
@@ -167,7 +167,7 @@ def bin():
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o bin para a consulta\n ===> \033[1;36m').strip()
+            input_user = input('\033[1;34m Enter the bin for the query\n ===> \033[1;36m').strip()
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             if readInput(input_user, 'numeric') != True: continue
@@ -185,12 +185,12 @@ def cep():
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o CEP para a consulta\n ===> \033[1;36m').strip().replace('-', '')
+            input_user = input('\033[1;34m Inform the CEP for consultation\n ===> \033[1;36m').strip().replace('-', '')
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             if readInput(input_user, 'numeric') != True: continue
             if len(input_user) != 8:
-                print('\033[1;33m O cep é formado por 8 digitos númerico!')
+                print('\033[1;33m The cep is formed by 8 numeric digits!')
                 time.sleep(2)
                 continue
             break               
@@ -207,13 +207,13 @@ def cnpj():
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o CNPJ para a consulta\n ===> \033[1;36m').strip().replace('.', '').replace('-', '').replace('/', '')
+            input_user = input('\033[1;34m Enter the CNPJ for the consultation\n ===> \033[1;36m').strip().replace('.', '').replace('-', '').replace('/', '')
             print(input_user)
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             if readInput(input_user, 'numeric') != True: continue
             if len(input_user) != 14:
-                print('\033[1;33m O cep é formado por 8 digitos númerico!')
+                print('\033[1;33m The cep is formed by 8 numeric digits!')
                 time.sleep(2)
                 continue
             break               
@@ -230,7 +230,7 @@ def covid19():
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe a sigla do estado para a consulta\n ===> \033[1;36m').strip()
+            input_user = input('\033[1;34m Enter the state abbreviation for the query\n ===> \033[1;36m').strip()
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             if readInput(input_user, 'isalpha') != True: continue
@@ -248,12 +248,12 @@ def ddd():
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o DDD para a consulta\n ===> \033[1;36m').strip().replace('0', '')
+            input_user = input('\033[1;34m Enter the DDD for the consultation\n ===> \033[1;36m').strip().replace('0', '')
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             if readInput(input_user, 'numeric') != True: continue
             if len(input_user) != 2:
-                print('\033[1;33m O número não corresponde ao um DDD existente!')
+                print('\033[1;33m The number does not match an existing DDD!')
                 time.sleep(2)
                 continue
             break
@@ -270,12 +270,12 @@ def ddi():
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = myReplace(input('\033[1;34m Informe o DDI para a consulta\n ===> \033[1;36m').strip())
+            input_user = myReplace(input('\033[1;34m Enter the DDI for the consultation\n ===> \033[1;36m').strip())
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             if readInput(input_user, 'numeric') != True: continue
             if len(input_user) > 3:
-                print('\033[1;33m O número não corresponde ao um DDI existente!')
+                print('\033[1;33m The number does not match an existing DDI!')
                 time.sleep(2)
                 continue
             elif len(input_user) == 2:
@@ -305,14 +305,14 @@ def ip():
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o ip para a consulta\n ===> \033[1;36m').strip()
+            input_user = input('\033[1;34m Enter the IP for the query\n ===> \033[1;36m').strip()
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             '''
             for i in range(0, len(input_user)):
                 if input_user[i] == '.':
                     if int(input_user[0:i-4]) > 255:
-                        print('\033[1;33m O IP informado é falso!')
+                        print('\033[1;33m The IP provided is false!')
                         time.sleep(2)
             '''
             #if readInput(input_user, 'numeric') != True: continue
@@ -331,7 +331,7 @@ def telefone():
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o telefone para a consulta\n ===> \033[1;36m').strip()
+            input_user = input('\033[1;34m Provide the phone number for the consultation\n ===> \033[1;36m').strip()
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             break 
@@ -349,13 +349,13 @@ def telefone():
   •CPF: 
   •RG: ××.×××.×××-×
   •Consulta By: Clownters
-  •Usuario: mike
+  •Usuario: Indra18s
 ''')
         break
 
 
 # Funções de geredores
-def geradorCpf():
+def CpfGenerator():
     while True:
         banner()
         soma = 0
@@ -378,11 +378,11 @@ def geradorCpf():
         if (soma % 11) < 2: soma = 0
         else: soma = 11 - (soma % 11)
         var = var + str(soma)
-        print(f'\033[1;34m CPF gerado:\033[0;32m {var}\n\033[1;34m CPF gerado:\033[0;32m {var[0:3]}.{var[3:6]}.{var[6:9]}-{var[9:]}')
+        print(f'\033[1;34m CPF generated:\033[0;32m {var}\n\033[1;34m CPF generated:\033[0;32m {var[0:3]}.{var[3:6]}.{var[6:9]}-{var[9:]}')
         if retorneMenu() == True: return True
 
 
-def geradorCnpj():
+def CnpjGenerator():
     while True:
         banner()
         var = ''
@@ -405,11 +405,11 @@ def geradorCnpj():
             if num < 2: num = 9
         if (soma % 11) < 2: var = var + '0'
         else: var = var + str(11 - (soma % 11))
-        print(f'\033[1;34m CNPJ gerado:\033[0;32m {var}\n\033[1;34m CNPJ gerado:\033[0;32m {var[0:2]}.{var[2:5]}.{var[5:8]}/{var[8:12]}-{var[12:]}')
+        print(f'\033[1;34m CNPJ generated:\033[0;32m {var}\n\033[1;34m CNPJ generated:\033[0;32m {var[0:2]}.{var[2:5]}.{var[5:8]}/{var[8:12]}-{var[12:]}')
         if retorneMenu() == True: return True
 
 
-def geradorPessoas():
+def GeneratorPeople():
     while True:
         banner()
         req = requests.get(f'https://randomuser.me/API/?nat=BR').json()
@@ -421,23 +421,23 @@ def geradorPessoas():
         #if retorneMenu() == True: return True
 
 
-def geradorEmail():
+def EmailGenerator():
     nomes_f = ['Miguel', 'Arthur', 'Gael', 'Théo', 'Heitor', 'Ravi', 'Davi', 'Bernardo', 'Noah', 'Gabriel', 'Samuel', 'Pedro', 'Anthony', 'Isaac', 'Benício', 'Benjamin', 'Matheus', 'Lucas', 'Joaquim', 'Nicolas', 'Lucca', 'Lorenzo', 'Henrique', 'João', 'Miguel', 'Rafael', 'Henry', 'Murilo', 'Levi', 'Guilherme', 'Vicente', 'Felipe', 'Bryan', 'Matteo', 'Bento', 'João', 'Pedro', 'Pietro', 'Leonardo', 'Daniel', 'Gustavo', 'Pedro', 'Henrique', 'João', 'Lucas', 'Emanuel', 'João', 'Caleb', 'Davi', 'Lucca', 'Antônio', 'Eduardo', 'Enrico', 'Caio', 'José', 'Enzo', 'Gabriel', 'Augusto', 'Mathias', 'Vitor', 'Enzo', 'Cauã', 'Francisco', 'Rael', 'João', 'Guilherme', 'Thomas', 'Yuri', 'Yan', 'Anthony', 'Gabriel', 'Oliver', 'Otávio', 'João', 'Gabriel', 'Nathan', 'Davi', 'Lucas', 'Vinícius', 'Theodoro', 'Valentim', 'Ryan', 'Luiz', 'Miguel', 'Arthur', 'Miguel', 'João', 'Vitor', 'Léonovo', 'Ravi', 'Lucca', 'Apollo', 'Thiago', 'Tomás', 'Martin', 'José', 'Miguel', 'Erick', 'Liam', 'Josué', 'Luan', 'Asafe', 'Raul', 'José', 'Pedro', 'Dominic', 'Kauê', 'Kalel', 'Luiz', 'Henrique', 'Dom', 'Davi', 'Miguel', 'Estevão', 'Breno', 'Davi', 'Luiz', 'Thales', 'Israel']
     nomes_m = ['Helena', 'Alice', 'Laura', 'Manuela', 'Sophia', 'Isabella', 'Luísa', 'Heloísa', 'Cecília', 'Maitê', 'Eloá', 'Elisa', 'Liz', 'Júlia', 'Maria', 'Luísa', 'Valentina', 'Maria', 'Alice', 'Lívia', 'Antonella', 'Lorena', 'Ayla', 'Isis', 'Maria', 'Júlia', 'Maya', 'Maria', 'Clara', 'Esther', 'Giovanna', 'Lara', 'Sarah', 'Beatriz', 'Aurora', 'Mariana', 'Maria', 'Cecília', 'Olívia', 'Maria', 'Helena', 'Isadora', 'Luna', 'Catarina', 'Melissa', 'Maria', 'Eduarda', 'Lavínia', '', 'Agatha', '', 'Emanuelly', 'Maria', 'Alícia', 'Rebeca', 'Ana', 'Clara', 'Yasmin', 'Clara', 'Marina', 'Ana', 'Júlia', 'Ana', 'Luísa', 'Isabelly', 'Ana', 'Laura', 'Rafaela', 'Ana', 'Liz', 'Stella', 'Gabriela', 'Vitória', 'Allana', 'Mirella', 'Milena', 'Bella', 'Ana', 'Nicole', 'Emilly', 'Maria', 'Vitória', 'Mariah', 'Clarice', 'Letícia', 'Laís', 'Maria', 'Liz', 'Bianca', 'Melina', 'Jade', 'Ana', 'Beatriz', 'Maria', 'Fernanda', 'Betina', 'Maria', 'Valentina', 'Maria', 'Laura', 'Heloíse', 'Maria', 'Isis', 'Zoe', 'Louise', 'Malu', 'Melinda', 'Ana', 'Cecília', 'Ana', 'Lívia', 'Ana', 'Vitória', 'Maria', 'Heloísa', 'Chloe', 'Maria', 'Flor', 'Pietra', 'Pérola', 'Ana', 'Sophia', 'Maria', 'Elisa', 'Gabrielly', 'Larissa', 'Maria', 'Eloá', 'Eduarda']
     nomes_a = nomes_f + nomes_m
     print(f'Email: {random.choice(nomes_a)}@exemplo.com')
 
 # Validadores
-def validadorCartao():
+def CardValidator():
     pass
 
 
-def validadorCnpj():
+def CnpjValidator():
     while True:
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o CNPJ para a validação\n ===> \033[1;36m').strip().replace('-', '')
+            input_user = input('\033[1;34m Enter the CNPJ for validation\n ===> \033[1;36m').strip().replace('-', '')
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             input_user = myReplace(input_user)
@@ -462,20 +462,20 @@ def validadorCnpj():
         if (soma % 11) < 2: input_user = input_user + '0'
         else: input_user = input_user + str(11 - (soma % 11))
         if input_user == cnpj:
-            print(f'\n\033[1;34m  CNPJ:\033[0;32m {input_user[0:2]}.{input_user[2:5]}.{input_user[5:8]}/{input_user[8:12]}-{input_user[12::]}\033[1;32m válido')
+            print(f'\n\033[1;34m  CNPJ:\033[0;32m {input_user[0:2]}.{input_user[2:5]}.{input_user[5:8]}/{input_user[8:12]}-{input_user[12::]}\033[1;32m valid')
         else:
-            print(f'\n\033[1;34m  CNPJ:\033[0;32m {input_user[0:2]}.{input_user[2:5]}.{input_user[5:8]}/{input_user[8:12]}-{input_user[12::]}\033[1;31m inválido')
+            print(f'\n\033[1;34m  CNPJ:\033[0;32m {input_user[0:2]}.{input_user[2:5]}.{input_user[5:8]}/{input_user[8:12]}-{input_user[12::]}\033[1;31m invalid')
         if retorneMenu() == True: return True
         # printa a variavel original caso o cnpj seja falso
         # varificar tamanho para evitar erro
 
 
-def validadorCpf():
+def CpfValidator():
       while True:
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o CPF para a validação\n ===> \033[1;36m').strip().replace('-', '')
+            input_user = input('\033[1;34m Enter your CPF for validation\n ===> \033[1;36m').strip().replace('-', '')
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             input_user = myReplace(input_user)
@@ -500,20 +500,20 @@ def validadorCpf():
         else: soma = 11 - (soma % 11)
         input_user = input_user + str(soma)
         if input_user == cpf:
-            print(f'\n\033[1;34m  CPF:\033[0;32m {cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}\033[1;32m válido')
+            print(f'\n\033[1;34m  CPF:\033[0;32m {cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}\033[1;32m valid')
         else: 
-            print(f'\n\033[1;34m  CPF:\033[0;32m {cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}\033[1;31m inválido')
+            print(f'\n\033[1;34m  CPF:\033[0;32m {cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}\033[1;31m invalid')
         if retorneMenu() == True: return True
         # cria uma função a parte para a logica cpf e valida
         # varificar tamanho para evitar erro
 
 
-def validadorRg():
+def IDValidator():
     while True:
         for i in range(0, 4):
             if i == 3: return False
             banner()
-            input_user = input('\033[1;34m Informe o RG para a validação\n ===> \033[1;36m').strip().replace('-', '')
+            input_user = input('\033[1;34m Enter ID for validation\n ===> \033[1;36m').strip().replace('-', '')
             if input_user == '99' or input_user.lower() == 'q': return True
             if readInput(input_user, 'empty'): continue
             input_user = myReplace(input_user)
@@ -531,9 +531,9 @@ def validadorRg():
         else: soma = 11 - (soma % 11)
         input_user = input_user + str(soma)
         if input_user == rg:
-            print(f'\n\033[1;34m  RG:\033[0;32m {rg[0:2]}.{rg[2:5]}.{rg[5:8]}-{rg[8:]}\033[1;32m válido')
+            print(f'\n\033[1;34m  RG:\033[0;32m {rg[0:2]}.{rg[2:5]}.{rg[5:8]}-{rg[8:]}\033[1;32m valid')
         else: 
-            print(f'\n\033[1;34m  RG:\033[0;32m {rg[0:2]}.{rg[2:5]}.{rg[5:8]}-{rg[8:]}\033[1;31m inválido')
+            print(f'\n\033[1;34m  RG:\033[0;32m {rg[0:2]}.{rg[2:5]}.{rg[5:8]}-{rg[8:]}\033[1;31m invalid')
         if retorneMenu() == True: return True
 
 
@@ -543,10 +543,10 @@ if __name__ == '__main__':
         time.sleep(1)
         sair()
     except KeyboardInterrupt:
-        print('\n\033[1;33m Programa interrompido pelo usuário')
+        print('\n\033[1;33m Program stopped by user')
         time.sleep(2)
         sair()
     except EOFError: 
-        print('\n\033[1;33m Programa interrompido pelo usuário')
+        print('\n\033[1;33m Program stopped by user')
         time.sleep(2)
         sair()
